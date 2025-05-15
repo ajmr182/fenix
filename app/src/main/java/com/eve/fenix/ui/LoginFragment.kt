@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.navigation.fragment.findNavController
+import com.eve.fenix.R
 import com.eve.fenix.databinding.FragmentLoginBinding
 import com.google.firebase.auth.FirebaseAuth
 
@@ -43,11 +45,7 @@ class LoginFragment : Fragment() {
             auth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener { task ->
                     if (task.isSuccessful) {
-                        Toast.makeText(
-                            requireContext(),
-                            "Inicio de sesión exitoso",
-                            Toast.LENGTH_SHORT
-                        ).show()
+                        findNavController().navigate(R.id.action_loginFragment_to_taskFragment)
                     } else {
                         Toast.makeText(
                             requireContext(),
